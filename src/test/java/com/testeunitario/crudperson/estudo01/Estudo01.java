@@ -2,36 +2,43 @@ package com.testeunitario.crudperson.estudo01;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class Estudo01 {
 	
+	// Cenário 
+	int numberOne = 10;
+	int numberTwo = 20;
+	
+	Calculadora calculadora;
+	
+	@BeforeAll // Anotação que deve ser executado antes de todos os testes na classe de teste atual.
+	public void setUp() {
+		calculadora = new Calculadora();
+	}
+	
 	@Test
 	public void soma(){
 		// cenário
-		int numberOne = 10;
-		int numberTwo = 20;
-		
+
 		// execulção
-		Calculadora calc = new Calculadora();
 		
-		calc.soma(numberOne, numberTwo);
+		calculadora.soma(numberOne, numberTwo);
 		
 		// validação
-		assertThat(calc).isEqualTo(15);
+		assertThat(calculadora).isEqualTo(15);
 	}
 	
 	@Test
 	public void testandoResultadoDeUmaDivisao() {
 		 // cenário
-		int numberOne = 0;
-		int NumberTwo = 5;
 		
-		Calculadora calc = new Calculadora();
+		calculadora.divisao(numberOne, numberTwo);
 		
-		calc.divisao(numberOne, NumberTwo);
+		assertThat(calculadora).isEqualTo(5);
 	}
 
 }
