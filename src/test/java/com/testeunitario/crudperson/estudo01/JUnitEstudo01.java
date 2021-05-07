@@ -3,7 +3,7 @@ package com.testeunitario.crudperson.estudo01;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -18,7 +18,7 @@ public class JUnitEstudo01 {
 	
 	Calculadora calculadora;
 	
-	@BeforeAll // Anotação que deve ser executado antes de todos os testes na classe de teste atual.
+	@BeforeEach // Anotação que deve ser executado antes de todos os testes na classe de teste atual.
 	public void setUp() {
 		calculadora = new Calculadora();
 	}

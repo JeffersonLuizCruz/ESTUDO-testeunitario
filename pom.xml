@@ -40,6 +40,12 @@
 		<artifactId>mockito-core</artifactId>
 		<scope>test</scope>
 	</dependency>
+	<!-- ObjectMapperserializa objetos Java em JSON e desserializar a sequência JSON em objetos Java. -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<scope>test</scope>
+	</dependency>
 	
 	
 	</dependencies>

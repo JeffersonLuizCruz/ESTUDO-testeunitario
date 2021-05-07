@@ -9,14 +9,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 
 /*
  * A classe SpringExtension é fornecida pelo Spring 5 e integra o Spring TestContext Framework ao JUnit 5.
  * A anotação @ExtendWith aceita qualquer classe que implemente a interface Extension .
  * */
-@ExtendWith(SpringExtension.class) //1. @ExtendWith(MockitoJUnitRunner.class) - Depreciado
+@ExtendWith(MockitoExtension.class) //1. @ExtendWith(MockitoJUnitRunner.class) - Depreciado
 public class MockitoEstudo01 {
 	
 	@Mock
