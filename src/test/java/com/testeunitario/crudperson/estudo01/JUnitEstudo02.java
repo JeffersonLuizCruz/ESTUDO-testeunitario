@@ -10,7 +10,7 @@ import com.testeunitario.crudperson.Pessoa;
 // Teste de cadastro de Pessa
 
 @SpringBootTest
-public class Estudo02 {
+public class JUnitEstudo02 {
 	
 	@Test
 	public void criarCadastroDePessoa(){

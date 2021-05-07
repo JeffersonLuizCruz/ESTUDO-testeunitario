@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class Estudo01 {
+public class JUnitEstudo01 {
 	
 	// Cenário 
 	int numberOne = 10;
