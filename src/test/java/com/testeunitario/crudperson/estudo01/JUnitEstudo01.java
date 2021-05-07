@@ -2,9 +2,12 @@ package com.testeunitario.crudperson.estudo01;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.testeunitario.crudperson.PessoaRunTimeExceptions;
 
 @SpringBootTest
 public class JUnitEstudo01 {
@@ -25,8 +28,8 @@ public class JUnitEstudo01 {
 		// cenário
 
 		// execulção
+		Assertions.assertThrows(PessoaRunTimeExceptions.class,() -> calculadora.soma(numberOne, numberTwo));
 		
-		calculadora.soma(numberOne, numberTwo);
 		
 		// validação
 		assertThat(calculadora).isEqualTo(15);
@@ -35,9 +38,9 @@ public class JUnitEstudo01 {
 	@Test
 	public void testandoResultadoDeUmaDivisao() {
 		 // cenário
+		Assertions.assertThrows(PessoaRunTimeExceptions.class, () -> calculadora.divisao(numberOne, numberTwo));
 		
-		calculadora.divisao(numberOne, numberTwo);
-		
+		// validação
 		assertThat(calculadora).isEqualTo(5);
 	}
 
