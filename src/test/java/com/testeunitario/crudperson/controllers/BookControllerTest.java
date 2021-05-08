@@ -37,7 +37,7 @@ public class BookControllerTest {
 	@Autowired
 	MockMvc mvc;
 	
-	static String BOOK_API = "/api/books";
+	static String BOOK_API = "/api/v1/books";
 	
 	@Test
 	@DisplayName("Deve criar um livro com sucesso")
@@ -64,7 +64,7 @@ public class BookControllerTest {
 					.andExpect(MockMvcResultMatchers.jsonPath("id").isNotEmpty())
 					.andExpect(MockMvcResultMatchers.jsonPath("title").value("Meu Livro"))
 					.andExpect(MockMvcResultMatchers.jsonPath("author").value("Autor"))
-					.andExpect(MockMvcResultMatchers.jsonPath("isbn").value("1254686"));
+					.andExpect(MockMvcResultMatchers.jsonPath("isbn").value("123456"));
 									
 	}
 
