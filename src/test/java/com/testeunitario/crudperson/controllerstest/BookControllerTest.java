@@ -1,4 +1,4 @@
-package com.testeunitario.crudperson.controllers;
+package com.testeunitario.crudperson.controllerstest;
 
 
 import org.junit.jupiter.api.DisplayName;

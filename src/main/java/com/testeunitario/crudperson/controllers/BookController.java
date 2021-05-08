@@ -1,5 +1,6 @@
 package com.testeunitario.crudperson.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,19 +17,20 @@ import com.testeunitario.crudperson.service.BookService;
 public class BookController {
 	
 	private BookService service;
+	private ModelMapper modelMapper;
 	
-	public BookController(BookService service) {
+	public BookController(BookService service, ModelMapper modelMapper) {
 		this.service = service;
+		this.modelMapper = modelMapper;
 	}
 	
 	
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public BookDto create(@RequestBody BookDto dto) {
-		Book book = Book.builder().author(dto.getAuthor()).title(dto.getTitle()).isbn(dto.getIsbn()).build();
+		Book book = modelMapper.map(dto, Book.class);
 		book = service.save(book);
 		
-		return BookDto.builder().id(1L).author(book.getAuthor()).title(book.getTitle()).isbn(book.getIsbn()).build();
+		return modelMapper.map(book, BookDto.class);
 	}
-
 }
