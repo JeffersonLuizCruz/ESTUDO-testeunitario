@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.testeunitario.crudperson.dto.BookDto;
 import com.testeunitario.crudperson.entities.Book;
-import com.testeunitario.crudperson.service.BookService;
+import com.testeunitario.crudperson.services.BookService;
 
 /*************
  * @ExtendWith(SpringExtension.class):

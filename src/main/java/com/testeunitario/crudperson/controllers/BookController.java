@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.testeunitario.crudperson.dto.BookDto;
 import com.testeunitario.crudperson.entities.Book;
-import com.testeunitario.crudperson.service.BookService;
+import com.testeunitario.crudperson.services.BookService;
 
 @RestController
 @RequestMapping("/api/v1/books")

@@ -1,4 +1,4 @@
-package com.testeunitario.crudperson.service;
+package com.testeunitario.crudperson.services;
 
 import com.testeunitario.crudperson.entities.Book;
 
