@@ -9,7 +9,6 @@ import com.tdd.spring.services.BookService;
 @Service
 public class BookServiceImpl implements BookService{
 
-	
 	private BookRepository bookRepository;
 	
 	public BookServiceImpl(BookRepository bookRepository) {
