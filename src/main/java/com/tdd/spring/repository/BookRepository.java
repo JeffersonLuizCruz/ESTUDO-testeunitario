@@ -1,8 +1,9 @@
 package com.tdd.spring.repository;
 
-import com.tdd.spring.entities.Book;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookRepository{
+import com.tdd.spring.entity.Book;
 
-	Book save(Book book);
+public interface BookRepository extends JpaRepository<Book, Long>{
+
 }

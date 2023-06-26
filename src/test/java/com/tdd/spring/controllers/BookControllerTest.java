@@ -16,8 +16,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tdd.spring.entities.Book;
-import com.tdd.spring.services.BookService;
+import com.tdd.spring.entity.Book;
+import com.tdd.spring.service.BookService;
+
 
 @ActiveProfiles("test")
 @WebMvcTest
