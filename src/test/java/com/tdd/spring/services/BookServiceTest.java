@@ -40,13 +40,21 @@ public class BookServiceTest {
 	@Test
 	@DisplayName("Deve salvar um livro")
 	public void saveBookTest() {
+		/*
+		 * O trecho de código configura o comportamento do método save() do objeto
+		 * bookService para retornar um objeto Book com valores específicos quando é
+		 * chamado com um argumento book. Isso permite simular o comportamento desse
+		 * método durante a execução dos testes.
+		 */
 		Mockito.when(bookService.save(book)).thenReturn(Book.builder()
 				.id(1L)
 				.title("Programando Java")
 				.author("Hugo")
 				.isbn("123")
 				.build());
+		
 		Book saveBook = bookService.save(book);
+		
 		Assertions.assertThat(saveBook.getId()).isNotNull();
 		Assertions.assertThat(saveBook.getIsbn()).isEqualTo("123");
 		Assertions.assertThat(saveBook.getTitle()).isEqualTo("Programando Java");
