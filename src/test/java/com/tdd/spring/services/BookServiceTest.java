@@ -51,7 +51,6 @@ public class BookServiceTest {
 		Assertions.assertThat(saveBook.getIsbn()).isEqualTo("123");
 		Assertions.assertThat(saveBook.getTitle()).isEqualTo("Programando Java");
 		Assertions.assertThat(saveBook.getAuthor()).isEqualTo("Hugo");
-		
 	}
 
 }
