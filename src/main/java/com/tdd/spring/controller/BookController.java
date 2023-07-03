@@ -1,5 +1,6 @@
 package com.tdd.spring.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/v1/books")
 public class BookController {
 	
-	private BookService bookService;
+	@Autowired private final BookService bookService;
 	
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
