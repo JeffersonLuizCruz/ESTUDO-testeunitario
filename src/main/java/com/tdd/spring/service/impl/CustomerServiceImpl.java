@@ -29,20 +29,20 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public List<Customer> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return customerRepository.findAll();
 	}
 
 	@Override
 	public Customer update(Long id, Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
+		findById(id);
+		customer.setId(id);
+		return customerRepository.save(customer);
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		
+		findById(id);
+		customerRepository.deleteById(id);
 	}
 
 }
