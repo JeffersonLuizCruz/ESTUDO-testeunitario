@@ -1,22 +1,15 @@
-package com.tdd.spring.dto;
+package com.tdd.spring.controller.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter @Setter
-public class BookDTO {
-	
+@AllArgsConstructor @NoArgsConstructor
+public class BookResponseDto {
 	private Long id;
 	private String title;
 	private String author;
 	private String isbn;
-
 }
