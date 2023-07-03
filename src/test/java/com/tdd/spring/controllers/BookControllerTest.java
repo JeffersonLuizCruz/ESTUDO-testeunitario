@@ -67,14 +67,14 @@ public class BookControllerTest {
 	public void returnExeceptionBadRequest() throws Exception {
 		Book book = Book.builder().id(7L).title("Aprendendo Java").author("Hugo").isbn("123456").build();
 		BDDMockito.given(service.save(Mockito.any(Book.class))).willThrow(new BadRequestExceptionService("Corpo da requisição ruim"));
-//		String json = new ObjectMapper().writeValueAsString(book);
-//		MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-//				.post(BOOK_API)
-//				.contentType(MediaType.APPLICATION_JSON)
-//				.accept(MediaType.APPLICATION_JSON).content(json);
-//		
-//		mvc.perform(request)
-//		.andExpect(MockMvcResultMatchers.status().isBadRequest());
+		String json = new ObjectMapper().writeValueAsString(book);
+		MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+				.post(BOOK_API)
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON).content(json);
+		
+		mvc.perform(request)
+		.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 
 }
