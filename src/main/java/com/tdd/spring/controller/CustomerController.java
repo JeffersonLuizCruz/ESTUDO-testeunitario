@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -41,6 +42,13 @@ public class CustomerController {
 		return ResponseEntity.ok(customerMapper.toDTO(customerService.findById(id)));
 	}
 	
+	@PutMapping("/{id}")
+	public ResponseEntity<CustomerResponseDto> update(@PathVariable Long id, @Valid @RequestBody CustomerRequestDto dto){
+		Customer customerModel = customerMapper.toModel(dto);
+		CustomerResponseDto customerResponse = customerMapper.toDTO(customerService.update(id, customerModel));
+		return ResponseEntity.status(HttpStatus.CREATED).body(customerResponse);
+	}
+	
 	@GetMapping
 	public ResponseEntity<List<CustomerResponseDto>> findAll(){
 		return ResponseEntity.ok(customerService.findAll()
@@ -49,8 +57,8 @@ public class CustomerController {
 				.toList());
 	}
 	
-	@DeleteMapping @ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteById(Long id) {
+	@DeleteMapping("/{id}") @ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void deleteById(@PathVariable Long id) {
 		customerService.deleteById(id);
 	}
 }
