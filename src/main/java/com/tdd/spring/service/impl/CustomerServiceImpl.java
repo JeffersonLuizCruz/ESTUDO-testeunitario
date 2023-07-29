@@ -2,6 +2,7 @@ package com.tdd.spring.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tdd.spring.entity.Customer;
@@ -9,12 +10,10 @@ import com.tdd.spring.repository.CustomerRepository;
 import com.tdd.spring.service.CustomerService;
 import com.tdd.spring.service.exception.NotFoundExceptionService;
 
-import lombok.AllArgsConstructor;
-
-@Service @AllArgsConstructor
+@Service
 public class CustomerServiceImpl implements CustomerService{
 
-	private final CustomerRepository customerRepository;
+	@Autowired private CustomerRepository customerRepository;
 	
 	@Override
 	public Customer save(Customer customer) {
