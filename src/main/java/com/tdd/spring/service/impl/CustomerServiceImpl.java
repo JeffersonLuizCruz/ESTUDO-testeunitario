@@ -1,6 +1,7 @@
 package com.tdd.spring.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tdd.spring.entity.Customer;
 import com.tdd.spring.repository.CustomerRepository;
 import com.tdd.spring.service.CustomerService;
+import com.tdd.spring.service.exception.BadRequestExceptionService;
 import com.tdd.spring.service.exception.NotFoundExceptionService;
 
 @Service
@@ -17,6 +19,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public Customer save(Customer customer) {
+		chequeUniqueCustomerByEmail(customer);
 		return customerRepository.save(customer);
 	}
 
@@ -43,5 +46,11 @@ public class CustomerServiceImpl implements CustomerService{
 		findById(id);
 		customerRepository.deleteById(id);
 	}
-
+	
+	private void chequeUniqueCustomerByEmail(Customer customer) {
+		Optional<Customer> responseEntity = customerRepository.findByEmail(customer.getEmail());
+		if(responseEntity.isPresent() && !responseEntity.get().equals(customer)) {
+			throw new BadRequestExceptionService("Email já existe");
+		}
+	}
 }

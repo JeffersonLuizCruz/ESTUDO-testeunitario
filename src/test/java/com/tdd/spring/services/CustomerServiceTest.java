@@ -58,13 +58,15 @@ public class CustomerServiceTest {
 	@Test
 	void whenFindByIdReturnAnObjectNotFoundException() {
 		when(customerRepository.findById(anyLong())).thenThrow(new NotFoundExceptionService(NOT_FOUND_EXCEPTION));
+		NotFoundExceptionService ex = null;
 		
 		try {
 			customerServiceImpl.findById(ID);
 		} catch (NotFoundExceptionService e) {
-			assertEquals(NotFoundExceptionService.class, e.getClass());
-			assertEquals(NOT_FOUND_EXCEPTION, e.getMessage());
+			ex = e;
 		}
+		assertEquals(NotFoundExceptionService.class, ex.getClass());
+		assertEquals(NOT_FOUND_EXCEPTION, ex.getMessage());
 	}
 	
 	@Test
@@ -81,6 +83,63 @@ public class CustomerServiceTest {
 		assertEquals(EMAIL, customerEntities.get(INDEX).getEmail());
 		assertEquals(PASSWORD, customerEntities.get(INDEX).getPassword());
 	}
+	
+	@Test
+	void whenSaveThenReturnAnCustomer() {
+		when(customerRepository.save(any())).thenReturn(this.customer);
+		
+		Customer responseEntity = customerServiceImpl.save(customer);
+		
+		assertNotNull(responseEntity);
+		assertEquals(Customer.class, responseEntity.getClass());
+		
+		assertEquals(ID, responseEntity.getId());
+		assertEquals(EMAIL, responseEntity.getEmail());
+		assertEquals(PASSWORD, responseEntity.getPassword());
+	}
+	
+	@Test
+	void whenUpdateThenReturnAnCustomer() {
+		when(customerRepository.findById(anyLong())).thenReturn(optionalCustomer);
+		when(customerRepository.save(any())).thenReturn(this.customer);
+		
+		Customer responseEntity = customerServiceImpl.update(ID, customer);
+		
+		assertNotNull(responseEntity);
+		assertEquals(Customer.class, responseEntity.getClass());
+		
+		assertEquals(ID, responseEntity.getId());
+		assertEquals(EMAIL, responseEntity.getEmail());
+		assertEquals(PASSWORD, responseEntity.getPassword());
+	}
+	
+	@Test
+	void whenDeleteByIdWithSuccess() {
+		when(customerRepository.findById(anyLong())).thenReturn(optionalCustomer);
+		doNothing().when(customerRepository).deleteById(anyLong());
+		
+		customerServiceImpl.deleteById(ID);
+		
+		verify(customerRepository, times(1)).deleteById(anyLong());
+	}
+	
+	@Test
+	void deleteByIdWithNotFoundException() {
+		when(customerRepository.findById(anyLong()))
+		.thenThrow(new NotFoundExceptionService("Objeto não encontrado!"));
+		
+		NotFoundExceptionService ex = null;
+		
+		try {
+			customerServiceImpl.deleteById(ID);
+		} catch (NotFoundExceptionService e) {
+			ex = e;
+		}
+		
+		assertEquals(NotFoundExceptionService.class, ex.getClass());
+		assertEquals("Objeto não encontrado!", ex.getMessage());
+	}
+	
 	void startCustomer() {
 		this.customer = Customer.builder()
 		.id(ID)
