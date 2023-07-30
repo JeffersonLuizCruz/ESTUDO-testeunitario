@@ -19,7 +19,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public Customer save(Customer customer) {
-		chequeUniqueCustomerByEmail(customer);
+		checkUniqueCustomerByEmail(customer);
 		return customerRepository.save(customer);
 	}
 
@@ -47,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService{
 		customerRepository.deleteById(id);
 	}
 	
-	private void chequeUniqueCustomerByEmail(Customer customer) {
+	private void checkUniqueCustomerByEmail(Customer customer) {
 		Optional<Customer> responseEntity = customerRepository.findByEmail(customer.getEmail());
 		if(responseEntity.isPresent() && !responseEntity.get().equals(customer)) {
 			throw new BadRequestExceptionService("Email já existe");
