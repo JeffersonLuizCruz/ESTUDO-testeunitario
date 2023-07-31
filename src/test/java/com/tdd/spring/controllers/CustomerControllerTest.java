@@ -85,6 +85,11 @@ public class CustomerControllerTest {
 		assertEquals(PASSWORD, responseCustomers.getBody().get(INDEX).getPassword());
 	}
 	
+	@Test
+	void whenSaveWithSuccess() {
+		
+	}
+	
 	void startCustomer() {
 		this.customer = Customer.builder()
 		.id(ID)
