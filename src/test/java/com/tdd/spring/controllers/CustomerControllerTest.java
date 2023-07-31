@@ -6,6 +6,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.tdd.spring.controller.CustomerController;
@@ -53,6 +56,7 @@ public class CustomerControllerTest {
 		
 		assertNotNull(responseCustomer);
 		assertNotNull(responseCustomer.getBody());
+		assertEquals(HttpStatus.OK, responseCustomer.getStatusCode());
 		assertEquals(ResponseEntity.class, responseCustomer.getClass());
 		assertEquals(CustomerResponseDto.class, responseCustomer.getBody().getClass());
 		
@@ -60,6 +64,25 @@ public class CustomerControllerTest {
 		assertEquals(EMAIL, responseCustomer.getBody().getEmail());
 		assertEquals(PASSWORD, responseCustomer.getBody().getPassword());
 		
+	}
+	
+	@Test
+	void whenFindAllThenReturnListOfCustomerResponseDto() {
+		when(customerServiceImpl.findAll()).thenReturn(List.of(this.customer));
+		when(customerMapper.toDTO(any())).thenReturn(customerResponseDto);
+		
+		ResponseEntity<List<CustomerResponseDto>> responseCustomers = customerController.findAll();
+		
+		assertNotNull(responseCustomers);
+		assertNotNull(responseCustomers.getBody());
+		assertEquals(HttpStatus.OK, responseCustomers.getStatusCode());
+		assertEquals(ResponseEntity.class, responseCustomers.getClass());
+		assertEquals(ArrayList.class, responseCustomers.getBody().getClass());
+		assertEquals(CustomerResponseDto.class, responseCustomers.getBody().get(INDEX).getClass());
+		
+		assertEquals(ID, responseCustomers.getBody().get(INDEX).getId());
+		assertEquals(EMAIL, responseCustomers.getBody().get(INDEX).getEmail());
+		assertEquals(PASSWORD, responseCustomers.getBody().get(INDEX).getPassword());
 	}
 	
 	void startCustomer() {

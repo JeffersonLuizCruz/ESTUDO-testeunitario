@@ -1,6 +1,7 @@
 package com.tdd.spring.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,7 +55,7 @@ public class CustomerController {
 		return ResponseEntity.ok(customerService.findAll()
 				.stream()
 				.map(customerMapper::toDTO)
-				.toList());
+				.collect(Collectors.toList()));
 	}
 	
 	@DeleteMapping("/{id}") @ResponseStatus(code = HttpStatus.NO_CONTENT)
