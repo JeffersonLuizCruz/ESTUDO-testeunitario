@@ -36,7 +36,6 @@ public class CustomerControllerTest {
 	private static final Long ID 					= 1L;
 	private static final String EMAIL 				= "jeff.luiz.cruz@gmail.com";
 	private static final String PASSWORD 			= "123";
-	private static final String NOT_FOUND_EXCEPTION = "Objeto não encontrado!";
 	
 	/*
 	 * Aqui, a anotação @InjectMocks é usada para injetar os mocks criados
@@ -48,9 +47,9 @@ public class CustomerControllerTest {
 	@Mock private CustomerService customerService;
 	@Mock private CustomerMapper customerMapper;
 	@Mock private Optional<Customer> optionalCustomer;
-	@Mock private Customer customer;
-	@Mock private CustomerRequestDto customerRequestDto;
-	@Mock private CustomerResponseDto customerResponseDto;
+	@Mock private Customer customer = new Customer();
+	@Mock private CustomerRequestDto customerRequestDto = new CustomerRequestDto();
+	@Mock private CustomerResponseDto customerResponseDto = new CustomerResponseDto();
 	
 	@BeforeEach
 	void setUp() {

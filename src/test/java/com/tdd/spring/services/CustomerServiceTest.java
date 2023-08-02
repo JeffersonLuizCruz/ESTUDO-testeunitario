@@ -35,7 +35,7 @@ public class CustomerServiceTest {
 	
 	@InjectMocks private CustomerServiceImpl customerServiceImpl;
 	@Mock private CustomerRepository customerRepository;
-	@Mock private Customer customer;
+	@Mock private Customer customer = new Customer();
 	@Mock private Optional<Customer> optionalCustomer;
 	
 	@BeforeEach
