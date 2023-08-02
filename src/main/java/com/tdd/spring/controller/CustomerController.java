@@ -47,7 +47,7 @@ public class CustomerController {
 	public ResponseEntity<CustomerResponseDto> update(@PathVariable Long id, @Valid @RequestBody CustomerRequestDto dto){
 		Customer customerModel = customerMapper.toModel(dto);
 		CustomerResponseDto customerResponse = customerMapper.toDTO(customerService.update(id, customerModel));
-		return ResponseEntity.status(HttpStatus.CREATED).body(customerResponse);
+		return ResponseEntity.status(HttpStatus.OK).body(customerResponse);
 	}
 	
 	@GetMapping

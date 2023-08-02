@@ -2,6 +2,9 @@ package com.tdd.spring.entity;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,5 +29,7 @@ public class Customer implements Serializable{
 	private Long id;
 	@Column(unique = true)
 	private String email;
+	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 }
