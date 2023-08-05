@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.tdd.spring.controller.dto.CustomerRequestDto;
 import com.tdd.spring.controller.dto.CustomerResponseDto;
@@ -47,7 +48,7 @@ public class CustomerController {
 	public ResponseEntity<CustomerResponseDto> update(@PathVariable Long id, @Valid @RequestBody CustomerRequestDto dto){
 		Customer customerModel = customerMapper.toModel(dto);
 		CustomerResponseDto customerResponse = customerMapper.toDTO(customerService.update(id, customerModel));
-		return ResponseEntity.status(HttpStatus.CREATED).body(customerResponse);
+		return ResponseEntity.status(HttpStatus.OK).body(customerResponse);
 	}
 	
 	@GetMapping
